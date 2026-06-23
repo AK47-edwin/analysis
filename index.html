@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>水质仪表需求收集表</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f5f5f5;color:#333;min-height:100vh;padding:12px}
+.header{text-align:center;padding:20px 0 14px;margin-bottom:12px;background:linear-gradient(135deg,#C41E3A,#8B0000);border-radius:12px;color:#fff}
+.header h1{font-size:19px;margin-bottom:4px}
+.header p{font-size:12px;opacity:.8}
+.card{background:#fff;border-radius:10px;padding:14px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.stitle{font-size:14px;font-weight:600;color:#C41E3A;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #fde8ec}
+.fr{margin-bottom:12px}
+.fl{font-size:13px;color:#555;margin-bottom:5px;font-weight:500}
+.fi{width:100%;padding:9px 11px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none;transition:border-color .2s;background:#fafafa}
+.fi:focus{border-color:#C41E3A;background:#fff}
+.cg{display:flex;flex-wrap:wrap;gap:7px}
+.ci{display:flex;align-items:center;gap:5px;padding:5px 10px;border:1.5px solid #ddd;border-radius:18px;font-size:13px;cursor:pointer;transition:all .2s;user-select:none;background:#fafafa}
+.ci input{display:none}
+.ci.ck{background:#fde8ec;border-color:#C41E3A;color:#C41E3A;font-weight:600}
+.ci .d{width:15px;height:15px;border:2px solid #ccc;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.ci.ck .d{background:#C41E3A;border-color:#C41E3A}
+.ci.ck .d::after{content:'';width:5px;height:5px;background:#fff;border-radius:50%}
+.rg{display:flex;flex-direction:column;gap:7px}
+.ri{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;transition:all .2s;background:#fafafa;flex-wrap:wrap}
+.ri input{display:none}
+.ri.ck{background:#fde8ec;border-color:#C41E3A;color:#C41E3A;font-weight:600}
+.ri .d{width:15px;height:15px;border:2px solid #ccc;border-radius:50%;flex-shrink:0;transition:all .2s}
+.ri.ck .d{border-color:#C41E3A}
+.ri.ck .d::after{content:'';display:block;width:7px;height:7px;background:#C41E3A;border-radius:50%;margin:2px}
+.pi{display:none;padding:5px 8px;border:1.5px solid #ddd;border-radius:6px;font-size:12px;outline:none;width:110px;margin-left:4px;background:#fafafa}
+.pi:focus{border-color:#C41E3A;background:#fff}
+.ri.ck .pi{display:inline-block;border-color:#C41E3A}
+.sr{display:flex;gap:6px;align-items:center;margin-top:5px}
+.sl{font-size:12px;color:#888;white-space:nowrap}
+.si{flex:1;padding:7px 9px;border:1.5px solid #ddd;border-radius:6px;font-size:13px;outline:none;background:#fafafa}
+.si:focus{border-color:#C41E3A;background:#fff}
+.ps{display:none}
+.ps.on{display:block}
+.btn{width:100%;padding:13px;background:linear-gradient(135deg,#C41E3A,#8B0000);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;margin-top:6px;letter-spacing:2px}
+.btn:active{opacity:.85}
+.tips{background:#fff8e6;border:1px solid #ffe58f;border-radius:8px;padding:10px;margin-top:14px;font-size:11px;color:#7c6a2f;line-height:1.7}
+.tips strong{color:#d48806}
+.hd{display:none!important}
+.rcard{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1);margin-bottom:10px}
+#simg{width:100%;display:block}
+.dbtn{display:block;width:100%;padding:13px;background:linear-gradient(135deg,#52c41a,#389e0d);color:#fff;border:none;font-size:14px;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;letter-spacing:1px}
+.smsg{text-align:center;padding:20px;font-size:15px;color:#52c41a;font-weight:600}
+</style>
+</head>
+<body>
+<div id="fa">
+<div class="header"><h1>水质仪表需求收集表</h1><p>请逐项填写，提交后自动生成汇总图片</p></div>
+<form id="fm">
+
+<!-- 基本信息 -->
+<div class="card">
+<div class="stitle">基本信息</div>
+<div class="fr"><div class="fl">公司名称</div><input class="fi" name="company" placeholder="请输入公司名称" autocomplete="off"></div>
+<div class="fr"><div class="fl">姓名</div><input class="fi" name="name" placeholder="请输入姓名" autocomplete="off"></div>
+<div class="fr"><div class="fl">联系方式</div><input class="fi" name="contact" placeholder="请输入手机号/电话" autocomplete="off"></div>
+</div>
+
+<!-- 介质信息 -->
+<div class="card">
+<div class="stitle">介质信息</div>
+<div class="fr"><div class="fl">介质名称</div><input class="fi" name="mname" placeholder="请输入介质名称" autocomplete="off"></div>
+<div class="fr"><div class="fl">介质组成（浓度）</div><input class="fi" name="mconc" placeholder="请输入介质组成及浓度" autocomplete="off"></div>
+<div class="fr"><div class="fl">是否符合（可多选）</div>
+<div class="cg">
+<label class="ci" onclick="tc(this)"><input type="checkbox" name="mtrait" value="腐蚀性" hidden><span class="d"></span>腐蚀性</label>
+<label class="ci" onclick="tc(this)"><input type="checkbox" name="mtrait" value="含颗粒" hidden><span class="d"></span>含颗粒</label>
+<label class="ci" onclick="tc(this)"><input type="checkbox" name="mtrait" value="易结晶" hidden><span class="d"></span>易结晶</label>
+</div></div>
+</div>
+
+<!-- 测量参数选择 -->
+<div class="card">
+<div class="stitle">测量参数（可多选）</div>
+<div class="fl" style="margin-bottom:6px">请选择需要的测量参数，选中后展开对应详细规格</div>
+<div class="cg">
+<label class="ci" onclick="tp(this,'ph')"><input type="checkbox" name="param" value="pH" hidden><span class="d"></span>pH</label>
+<label class="ci" onclick="tp(this,'orp')"><input type="checkbox" name="param" value="ORP" hidden><span class="d"></span>ORP</label>
+<label class="ci" onclick="tp(this,'cond')"><input type="checkbox" name="param" value="电导率" hidden><span class="d"></span>电导率</label>
+<label class="ci" onclick="tp(this,'do')"><input type="checkbox" name="param" value="溶解氧" hidden><span class="d"></span>溶解氧</label>
+<label class="ci" onclick="tp(this,'turb')"><input type="checkbox" name="param" value="浊度" hidden><span class="d"></span>浊度</label>
+<label class="ci" onclick="tp(this,'ss')"><input type="checkbox" name="param" value="污泥浓度" hidden><span class="d"></span>污泥浓度</label>
+</div>
+</div>
+
+<!-- pH -->
+<div class="card ps" id="s-ph">
+<div class="stitle">pH 详细规格</div>
+<div class="fr"><div class="fl">测量参数（量程）</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_rng" value="2~12 pH" hidden><span class="d"></span>pH（2~12）pH</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_rng" value="0~14 pH" hidden><span class="d"></span>pH（0~14）pH</label>
+</div></div>
+<div class="fr"><div class="fl">温补类型</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_cmp" value="无" hidden><span class="d"></span>无</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_cmp" value="NTC10K" hidden><span class="d"></span>NTC10K</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_cmp" value="NTC30K" hidden><span class="d"></span>NTC30K</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_cmp" value="NTC22K" hidden><span class="d"></span>NTC22K</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_cmp" value="PT1000" hidden><span class="d"></span>PT1000</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_cmp" value="PT100" hidden><span class="d"></span>PT100</label>
+</div></div>
+<div class="fr"><div class="fl">操作温度</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_tmp" value="＜60℃" hidden><span class="d"></span>＜60℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_tmp" value="＜80℃" hidden><span class="d"></span>＜80℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_tmp" value="80℃~135℃" hidden><span class="d"></span>80℃~135℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_tmp" value="其他" hidden><span class="d"></span>其他<input class="pi" name="ph_tmp_v" placeholder="请填写" onclick="event.stopPropagation()" autocomplete="off"></label>
+</div></div>
+<div class="fr"><div class="fl">操作压力（MPa）</div><input class="fi" name="ph_prs" placeholder="请填写，如：0.3" autocomplete="off"></div>
+<div class="fr"><div class="fl">螺纹接口</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_thr" value="NPT3/4" hidden><span class="d"></span>NPT3/4</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_thr" value="NPT1/2" hidden><span class="d"></span>NPT1/2</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_thr" value="PG13.5" hidden><span class="d"></span>PG13.5</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_thr" value="G3/4" hidden><span class="d"></span>G3/4</label>
+</div></div>
+<div class="fr"><div class="fl">线缆长度</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_cbl" value="标配5米线缆" hidden><span class="d"></span>标配5米线缆</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ph_cbl" value="其他" hidden><span class="d"></span>其他<input class="pi" name="ph_cbl_v" placeholder="请填写（米）" onclick="event.stopPropagation()" autocomplete="off"></label>
+</div></div>
+</div>
+
+<!-- ORP -->
+<div class="card ps" id="s-orp">
+<div class="stitle">ORP 详细规格</div>
+<div class="fr"><div class="fl">测量参数（量程）</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_rng" value="-1000~1000 mV" hidden><span class="d"></span>（-1000~1000）mV</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_rng" value="-1500~1500 mV" hidden><span class="d"></span>（-1500~1500）mV</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_rng" value="-1600~1600 mV" hidden><span class="d"></span>（-1600~1600）mV</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_rng" value="-2000~2000 mV" hidden><span class="d"></span>（-2000~2000）mV</label>
+</div></div>
+<div class="fr"><div class="fl">温补类型</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_cmp" value="无" hidden><span class="d"></span>无</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_cmp" value="NTC10K" hidden><span class="d"></span>NTC10K</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_cmp" value="NTC30K" hidden><span class="d"></span>NTC30K</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_cmp" value="NTC22K" hidden><span class="d"></span>NTC22K</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_cmp" value="PT1000" hidden><span class="d"></span>PT1000</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_cmp" value="PT100" hidden><span class="d"></span>PT100</label>
+</div></div>
+<div class="fr"><div class="fl">操作温度</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_tmp" value="＜60℃" hidden><span class="d"></span>＜60℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_tmp" value="＜80℃" hidden><span class="d"></span>＜80℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_tmp" value="80℃~135℃" hidden><span class="d"></span>80℃~135℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_tmp" value="其他" hidden><span class="d"></span>其他<input class="pi" name="orp_tmp_v" placeholder="请填写" onclick="event.stopPropagation()" autocomplete="off"></label>
+</div></div>
+<div class="fr"><div class="fl">操作压力（MPa）</div><input class="fi" name="orp_prs" placeholder="请填写，如：0.3" autocomplete="off"></div>
+<div class="fr"><div class="fl">螺纹接口</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_thr" value="NPT3/4" hidden><span class="d"></span>NPT3/4</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_thr" value="NPT1/2" hidden><span class="d"></span>NPT1/2</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_thr" value="PG13.5" hidden><span class="d"></span>PG13.5</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_thr" value="G3/4" hidden><span class="d"></span>G3/4</label>
+</div></div>
+<div class="fr"><div class="fl">线缆长度</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_cbl" value="标配5米线缆" hidden><span class="d"></span>标配5米线缆</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="orp_cbl" value="其他" hidden><span class="d"></span>其他<input class="pi" name="orp_cbl_v" placeholder="请填写（米）" onclick="event.stopPropagation()" autocomplete="off"></label>
+</div></div>
+</div>
+
+<!-- 电导率 -->
+<div class="card ps" id="s-cond">
+<div class="stitle">电导率 详细规格</div>
+<div class="fr"><div class="fl">测量参数（电极常数/量程）</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_rng" value="K=0.01 (0~20)μs/cm" hidden><span class="d"></span>K=0.01（0~20）μs/cm</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_rng" value="K=0.1 (20~200)μs/cm" hidden><span class="d"></span>K=0.1（20~200）μs/cm</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_rng" value="K=1.0 (200~2000)μs/cm" hidden><span class="d"></span>K=1.0（200~2000）μs/cm</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_rng" value="K=10.0 >2000μs/cm" hidden><span class="d"></span>K=10.0 ＞2000μs/cm</label>
+</div></div>
+<div class="fr"><div class="fl">温补类型</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_cmp" value="无" hidden><span class="d"></span>无</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_cmp" value="NTC10K" hidden><span class="d"></span>NTC10K</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_cmp" value="NTC30K" hidden><span class="d"></span>NTC30K</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_cmp" value="NTC22K" hidden><span class="d"></span>NTC22K</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_cmp" value="PT1000" hidden><span class="d"></span>PT1000</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_cmp" value="PT100" hidden><span class="d"></span>PT100</label>
+</div></div>
+<div class="fr"><div class="fl">操作温度</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_tmp" value="＜60℃" hidden><span class="d"></span>＜60℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_tmp" value="＜80℃" hidden><span class="d"></span>＜80℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_tmp" value="80℃~135℃" hidden><span class="d"></span>80℃~135℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_tmp" value="其他" hidden><span class="d"></span>其他<input class="pi" name="cd_tmp_v" placeholder="请填写" onclick="event.stopPropagation()" autocomplete="off"></label>
+</div></div>
+<div class="fr"><div class="fl">操作压力（MPa）</div><input class="fi" name="cd_prs" placeholder="请填写，如：0.3" autocomplete="off"></div>
+<div class="fr"><div class="fl">螺纹接口</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_thr" value="NPT3/4" hidden><span class="d"></span>NPT3/4</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_thr" value="NPT1/2" hidden><span class="d"></span>NPT1/2</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_thr" value="PG13.5" hidden><span class="d"></span>PG13.5</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_thr" value="G3/4" hidden><span class="d"></span>G3/4</label>
+</div></div>
+<div class="fr"><div class="fl">线缆长度</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_cbl" value="标配5米线缆" hidden><span class="d"></span>标配5米线缆</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="cd_cbl" value="其他" hidden><span class="d"></span>其他<input class="pi" name="cd_cbl_v" placeholder="请填写（米）" onclick="event.stopPropagation()" autocomplete="off"></label>
+</div></div>
+</div>
+
+<!-- 溶解氧 -->
+<div class="card ps" id="s-do">
+<div class="stitle">溶解氧 详细规格</div>
+<div class="fr"><div class="fl">测量参数（量程）</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_rng" value="0~20 mg/L" hidden><span class="d"></span>（0~20）mg/L</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_rng" value="0~40 mg/L" hidden><span class="d"></span>（0~40）mg/L</label>
+</div></div>
+<div class="fr"><div class="fl">操作温度</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_tmp" value="＜45℃" hidden><span class="d"></span>＜45℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_tmp" value="＜50℃" hidden><span class="d"></span>＜50℃</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_tmp" value="其他" hidden><span class="d"></span>其他<input class="pi" name="do_tmp_v" placeholder="请填写" onclick="event.stopPropagation()" autocomplete="off"></label>
+</div></div>
+<div class="fr"><div class="fl">操作压力（MPa）</div><input class="fi" name="do_prs" placeholder="请填写，如：0.3" autocomplete="off"></div>
+<div class="fr"><div class="fl">螺纹接口</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_thr" value="NPT3/4" hidden><span class="d"></span>NPT3/4</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_thr" value="NPT1/2" hidden><span class="d"></span>NPT1/2</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_thr" value="PG13.5" hidden><span class="d"></span>PG13.5</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_thr" value="G3/4" hidden><span class="d"></span>G3/4</label>
+</div></div>
+<div class="fr"><div class="fl">线缆长度</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_cbl" value="标配5米线缆" hidden><span class="d"></span>标配5米线缆</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="do_cbl" value="其他" hidden><span class="d"></span>其他<input class="pi" name="do_cbl_v" placeholder="请填写（米）" onclick="event.stopPropagation()" autocomplete="off"></label>
+</div></div>
+</div>
+
+<!-- 浊度 -->
+<div class="card ps" id="s-turb">
+<div class="stitle">浊度 详细规格</div>
+<div class="fr"><div class="fl">测量参数（量程）</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_rng" value="0~10 NTU" hidden><span class="d"></span>（0~10）NTU</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_rng" value="0~20 NTU" hidden><span class="d"></span>（0~20）NTU</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_rng" value="0~100 NTU" hidden><span class="d"></span>（0~100）NTU</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_rng" value="0~200 NTU" hidden><span class="d"></span>（0~200）NTU</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_rng" value="0~1000 NTU" hidden><span class="d"></span>（0~1000）NTU</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_rng" value="0~3000 NTU" hidden><span class="d"></span>（0~3000）NTU</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_rng" value="0~4000 NTU" hidden><span class="d"></span>（0~4000）NTU</label>
+</div></div>
+<div class="fr"><div class="fl">操作压力（MPa）</div><input class="fi" name="tb_prs" placeholder="请填写，如：0.3" autocomplete="off"></div>
+<div class="fr"><div class="fl">螺纹接口</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_thr" value="NPT3/4" hidden><span class="d"></span>NPT3/4</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_thr" value="NPT1/2" hidden><span class="d"></span>NPT1/2</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_thr" value="PG13.5" hidden><span class="d"></span>PG13.5</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_thr" value="G3/4" hidden><span class="d"></span>G3/4</label>
+</div></div>
+<div class="fr"><div class="fl">线缆长度</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_cbl" value="标配5米线缆" hidden><span class="d"></span>标配5米线缆</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="tb_cbl" value="其他" hidden><span class="d"></span>其他<input class="pi" name="tb_cbl_v" placeholder="请填写（米）" onclick="event.stopPropagation()" autocomplete="off"></label>
+</div></div>
+</div>
+
+<!-- 污泥浓度 -->
+<div class="card ps" id="s-ss">
+<div class="stitle">污泥浓度 详细规格</div>
+<div class="fr"><div class="fl">测量参数（量程）</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="ss_rng" value="0~5 g/L" hidden><span class="d"></span>（0~5）g/L</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ss_rng" value="0~15 g/L" hidden><span class="d"></span>（0~15）g/L</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ss_rng" value="0~20 g/L" hidden><span class="d"></span>（0~20）g/L</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ss_rng" value="0~50 g/L" hidden><span class="d"></span>（0~50）g/L</label>
+</div></div>
+<div class="fr"><div class="fl">操作压力（MPa）</div><input class="fi" name="ss_prs" placeholder="请填写，如：0.3" autocomplete="off"></div>
+<div class="fr"><div class="fl">螺纹接口</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="ss_thr" value="NPT3/4" hidden><span class="d"></span>NPT3/4</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ss_thr" value="NPT1/2" hidden><span class="d"></span>NPT1/2</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ss_thr" value="PG13.5" hidden><span class="d"></span>PG13.5</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ss_thr" value="G3/4" hidden><span class="d"></span>G3/4</label>
+</div></div>
+<div class="fr"><div class="fl">线缆长度</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="ss_cbl" value="标配5米线缆" hidden><span class="d"></span>标配5米线缆</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="ss_cbl" value="其他" hidden><span class="d"></span>其他<input class="pi" name="ss_cbl_v" placeholder="请填写（米）" onclick="event.stopPropagation()" autocomplete="off"></label>
+</div></div>
+</div>
+
+<!-- 通用配置 -->
+<div class="card">
+<div class="stitle">通用配置</div>
+<div class="fr"><div class="fl">输出</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="output" value="4~20mA+RS485" hidden><span class="d"></span>4~20mA+RS485</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="output" value="4~20mA+RS485+5G" hidden><span class="d"></span>4~20mA+RS485+5G</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="output" value="2路4-20mA+RS485" hidden><span class="d"></span>2路4~20mA+RS485</label>
+</div></div>
+<div class="fr"><div class="fl">报警输出</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="alarm" value="2路SPDT" hidden><span class="d"></span>2路SPDT</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="alarm" value="2路SPDT+1路时间继电器" hidden><span class="d"></span>2路SPDT+1路时间继电器</label>
+</div></div>
+<div class="fr"><div class="fl">供电电源</div><div class="rg">
+<label class="ri" onclick="cr(this)"><input type="radio" name="power" value="220V AC" hidden><span class="d"></span>220V AC</label>
+<label class="ri" onclick="cr(this)"><input type="radio" name="power" value="24V DC" hidden><span class="d"></span>24V DC</label>
+</div></div>
+<div class="fr"><div class="fl">安装方式</div><div class="cg">
+<label class="ci" onclick="tc(this)"><input type="checkbox" name="inst" value="浸没式" hidden><span class="d"></span>浸没式</label>
+<label class="ci" onclick="tc(this)"><input type="checkbox" name="inst" value="管段式" hidden><span class="d"></span>管段式</label>
+<label class="ci" onclick="tc(this)"><input type="checkbox" name="inst" value="流通式" hidden><span class="d"></span>流通式</label>
+<label class="ci" onclick="tc(this)"><input type="checkbox" name="inst" value="侧壁安装" hidden><span class="d"></span>侧壁安装</label>
+<label class="ci" onclick="tc(this)"><input type="checkbox" name="inst" value="法兰插入式安装" hidden><span class="d"></span>法兰插入式安装</label>
+</div></div>
+</div>
+
+<button type="submit" class="btn">提交生成汇总图片</button>
+<div class="tips"><strong>💡 温馨提示：</strong><br>• 在线分析仪表由控制器和传感器两部分组成<br>• 常规电极耐温80℃耐压0.6MPa，超过需选高温款<br>• 线缆最长可配置80米温补线缆</div>
+</form>
+</div>
+
+<!-- 结果 -->
+<div id="ra" class="hd">
+<div class="smsg">✅ 提交成功！</div>
+<div class="rcard" id="rc"><img id="simg"></div>
+<a id="dl" class="dbtn" download="水质仪表需求汇总.png">📥 长按图片保存 / 点击下载</a>
+<button class="btn" style="background:#888;margin-top:8px" onclick="rf()">🔄 继续填写新单</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+function tc(e){var i=e.querySelector('input');i.checked=!i.checked;e.classList.toggle('ck',i.checked)}
+function cr(e){e.parentElement.querySelectorAll('.ri').forEach(function(i){i.classList.remove('ck')});e.classList.add('ck');e.querySelector('input').checked=true}
+function tp(e,s){tc(e);var x=document.getElementById('s-'+s);if(x)x.classList.toggle('on',e.querySelector('input').checked)}
+function gv(n){var e=document.querySelector('[name="'+n+'"]');return e?e.value.trim():''}
+function gcv(n){return Array.from(document.querySelectorAll('[name="'+n+'"]:checked')).map(function(i){return i.value})}
+function grv(n){var c=document.querySelector('[name="'+n+'"]:checked');return c?c.value:''}
+function ts(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+function rf(){document.getElementById('fa').classList.remove('hd');document.getElementById('ra').classList.add('hd');window.scrollTo(0,0)}
+
+function cpd(p,l){var s=document.getElementById('s-'+p);if(!s||!s.classList.contains('on'))return null;var d={label:l};s.querySelectorAll('input[type="radio"]:checked').forEach(function(r){var k=r.name.replace(p+'_','');d[k]=r.value});s.querySelectorAll('.si,.pi').forEach(function(i){if(i.value.trim())d[i.name.replace(p+'_','')+'_v']=i.value.trim()});s.querySelectorAll('.fi').forEach(function(i){if(i.value.trim())d[i.name.replace(p+'_','')]=i.value.trim()});return d}
+
+document.getElementById('fm').addEventListener('submit',async function(e){
+e.preventDefault();
+var co=gv('company'),nm=gv('name'),ct=gv('contact'),mn=gv('mname'),mc=gv('mconc'),mt=gcv('mtrait'),pm=gcv('param'),ot=grv('output'),al=grv('alarm'),pw=grv('power'),inst=gcv('inst');
+var ph=cpd('ph','pH'),orp=cpd('orp','ORP'),cd=cpd('cond','电导率'),dox=cpd('do','溶解氧'),tb=cpd('turb','浊度'),ss=cpd('ss','污泥浓度');
+var ap=[ph,orp,cd,dox,tb,ss].filter(function(x){return x});
+
+function pb(d){
+if(!d)return'';var r=[];
+if(d.rng)r.push(['测量参数',d.rng]);
+if(d.cmp)r.push(['温补类型',d.cmp]);
+if(d.tmp){if(d.tmp_v)r.push(['操作温度',d.tmp+'（'+d.tmp_v+'）']);else r.push(['操作温度',d.tmp])}
+else if(d.tmp_v)r.push(['操作温度',d.tmp_v]);
+if(d.prs)r.push(['操作压力',d.prs+'MPa']);
+if(d.thr)r.push(['螺纹接口',d.thr]);
+if(d.cbl){if(d.cbl==='其他'&&d.cbl_v)r.push(['线缆长度',d.cbl_v]);else if(d.cbl_v)r.push(['线缆长度',d.cbl+'（'+d.cbl_v+'）']);else r.push(['线缆长度',d.cbl])}
+var h='<div style="font-size:12px;color:#C41E3A;font-weight:600;margin:6px 0 3px;padding-left:6px;border-left:2px solid #C41E3A">'+d.label+'</div>';
+r.forEach(function(i){h+='<div style="display:flex;padding:3px 0;font-size:11px;border-bottom:1px dashed #f0f0f0"><span style="color:#999;width:68px;flex-shrink:0">'+i[0]+'</span><span style="color:#333;font-weight:500">'+i[1]+'</span></div>'});
+return h}
+
+var pmh=pm.length?pm.map(function(p){return'<span style="display:inline-block;background:#fde8ec;color:#C41E3A;padding:1px 8px;border-radius:10px;font-size:11px;margin:1px">'+p+'</span>'}).join(' '):'<span style="color:#ccc">未选择</span>';
+var mth=mt.length?mt.map(function(t){return'<span style="display:inline-block;background:#fff3e0;color:#e65100;padding:1px 8px;border-radius:10px;font-size:11px;margin:1px">'+t+'</span>'}).join(' '):'<span style="color:#ccc">未选择</span>';
+var inh=inst.length?inst.map(function(p){return'<span style="display:inline-block;background:#fde8ec;color:#C41E3A;padding:1px 8px;border-radius:10px;font-size:11px;margin:1px">'+p+'</span>'}).join(' '):'<span style="color:#ccc">未选择</span>';
+var abh='';ap.forEach(function(d){abh+=pb(d)});
+
+var c=document.createElement('div');
+c.style.cssText='position:fixed;left:-9999px;top:0;background:#fff;padding:20px;width:375px;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif';
+c.innerHTML='<div style="text-align:center;background:linear-gradient(135deg,#C41E3A,#8B0000);border-radius:10px;padding:12px;margin-bottom:14px"><div style="font-size:17px;font-weight:bold;color:#fff">水质仪表需求汇总</div><div style="font-size:11px;color:rgba(255,255,255,.8);margin-top:3px">'+ts()+'</div></div>'
++'<div style="margin-bottom:12px"><div style="font-size:13px;color:#C41E3A;font-weight:600;margin-bottom:6px;border-left:3px solid #C41E3A;padding-left:8px">基本信息</div>'
++'<div style="display:flex;padding:4px 0;border-bottom:1px dashed #eee;font-size:12px"><span style="color:#888;width:68px">公司名称</span><span style="color:#333;font-weight:500">'+(co||'未填写')+'</span></div>'
++'<div style="display:flex;padding:4px 0;border-bottom:1px dashed #eee;font-size:12px"><span style="color:#888;width:68px">姓名</span><span style="color:#333;font-weight:500">'+(nm||'未填写')+'</span></div>'
++'<div style="display:flex;padding:4px 0;border-bottom:1px dashed #eee;font-size:12px"><span style="color:#888;width:68px">联系方式</span><span style="color:#333;font-weight:500">'+(ct||'未填写')+'</span></div></div>'
++'<div style="margin-bottom:12px"><div style="font-size:13px;color:#C41E3A;font-weight:600;margin-bottom:6px;border-left:3px solid #C41E3A;padding-left:8px">介质信息</div>'
++'<div style="display:flex;padding:4px 0;border-bottom:1px dashed #eee;font-size:12px"><span style="color:#888;width:68px">介质名称</span><span style="color:#333;font-weight:500">'+(mn||'未填写')+'</span></div>'
++'<div style="display:flex;padding:4px 0;border-bottom:1px dashed #eee;font-size:12px"><span style="color:#888;width:68px">浓度</span><span style="color:#333;font-weight:500">'+(mc||'未填写')+'</span></div>'
++'<div style="display:flex;padding:4px 0;border-bottom:1px dashed #eee;font-size:12px;align-items:center"><span style="color:#888;width:68px">是否符合</span><span style="color:#333;font-weight:500">'+mth+'</span></div></div>'
++'<div style="margin-bottom:12px"><div style="font-size:13px;color:#C41E3A;font-weight:600;margin-bottom:6px;border-left:3px solid #C41E3A;padding-left:8px">测量参数</div><div style="padding:4px 0;border-bottom:1px dashed #eee;font-size:12px">'+pmh+'</div></div>'
++(ap.length?'<div style="margin-bottom:12px"><div style="font-size:13px;color:#C41E3A;font-weight:600;margin-bottom:6px;border-left:3px solid #C41E3A;padding-left:8px">参数详细规格</div>'+abh+'</div>':'')
++'<div style="margin-bottom:12px"><div style="font-size:13px;color:#C41E3A;font-weight:600;margin-bottom:6px;border-left:3px solid #C41E3A;padding-left:8px">通用配置</div>'
++'<div style="display:flex;padding:4px 0;border-bottom:1px dashed #eee;font-size:12px"><span style="color:#888;width:68px">输出</span><span style="color:#333;font-weight:500">'+(ot||'未选择')+'</span></div>'
++'<div style="display:flex;padding:4px 0;border-bottom:1px dashed #eee;font-size:12px"><span style="color:#888;width:68px">报警输出</span><span style="color:#333;font-weight:500">'+(al||'未选择')+'</span></div>'
++'<div style="display:flex;padding:4px 0;border-bottom:1px dashed #eee;font-size:12px"><span style="color:#888;width:68px">供电电源</span><span style="color:#333;font-weight:500">'+(pw||'未选择')+'</span></div>'
++'<div style="display:flex;padding:4px 0;border-bottom:1px dashed #eee;font-size:12px;align-items:center"><span style="color:#888;width:68px">安装方式</span><span style="color:#333;font-weight:500">'+inh+'</span></div></div>'
++'<div style="text-align:center;margin-top:14px;padding-top:10px;border-top:1px solid #eee;font-size:11px;color:#bbb">美仪 · Supmea 水质仪表需求收集表</div>';
+document.body.appendChild(c);
+await new Promise(function(r){setTimeout(r,100)});
+try{var cv=await html2canvas(c,{scale:2,backgroundColor:'#fff',useCORS:true});var pu=cv.toDataURL('image/png');document.getElementById('simg').src=pu;document.getElementById('dl').href=pu;document.getElementById('fa').classList.add('hd');document.getElementById('ra').classList.remove('hd');window.scrollTo(0,0)}catch(err){alert('图片生成失败，请手动截图保存')}finally{document.body.removeChild(c)}
+});
+</script>
+</body>
+</html>
